@@ -258,7 +258,7 @@ on:
           - yourname
 
 env:
-  FEEDS_CONF: config/${{ inputs.source_branch }}/feeds.conf.default
+  FEEDS_CONF: config/lede_master/feeds.conf
   CONFIG_FILE: config/${{ inputs.source_branch }}/config
   DIY_P1_SH: config/${{ inputs.source_branch }}/diy-part1.sh
   DIY_P2_SH: config/${{ inputs.source_branch }}/diy-part2.sh
