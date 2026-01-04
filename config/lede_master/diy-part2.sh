@@ -52,16 +52,23 @@ git clone --depth=1 -b main https://github.com/linkease/istore package/istore
 # ------------------------------- Other started -------------------------------
 # 设置默认主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argone/g' feeds/luci/collections/luci-light/Makefile
+
+# 18.06 Argone theme
+git clone --depth=1 -b main https://github.com/hza81007155/luci-theme-argone package/luci-theme-argone
+git clone --depth=1 -b main https://github.com/hza81007155/luci-app-argone-config package/luci-app-argone-config
+
 # Add luci-app-amlogic
 rm -rf package/luci-app-amlogic
-rm -rf feeds/luci/applications/luci-app-passwall
-rm -rf feeds/luci/themes/luci-theme-argon
 git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
-git clone --depth=1 --single-branch https://github.com/xiaorouji/openwrt-passwall.git
-#git clone --depth=1 --single-branch https://github.com/xiaorouji/openwrt-passwall2.git
-git clone https://github.com/kenzok78/luci-theme-argone
-git clone https://github.com/kenzok78/luci-app-argone-config
-#
+
+# 移除 openwrt feeds 自带的核心库
+rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview,shadow-tls}
+git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
+
+# 移除 openwrt feeds 过时的luci版本
+rm -rf feeds/luci/applications/luci-app-passwall
+git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
+
 # Apply patch
 # git apply ../config/patches/{0001*,0002*}.patch --directory=feeds/luci
 #
