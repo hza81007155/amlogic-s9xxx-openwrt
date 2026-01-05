@@ -72,6 +72,9 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
 # dockerman
 git clone --depth=1 --single-branch https://github.com/sirpdboy/luci-app-dockerman.git
 
+# 应用过滤
+git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
+
 # 修改版本为编译日期
 date_version=$(date +"%y.%m.%d")
 orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
