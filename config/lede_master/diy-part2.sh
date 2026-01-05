@@ -77,7 +77,8 @@ date_version=$(date +"%y.%m.%d")
 orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
 sed -i "s/${orig_version}/R${date_version} by hza800755/g" package/lean/default-settings/files/zzz-default-settings
 
-#Open Clash
+# Open Clash
+git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/luci-app-openclash
 git clone --depth=1 --single-branch --branch "dev" https://github.com/vernesong/OpenClash.git
 
 #预置OpenClash内核和GEO数据
