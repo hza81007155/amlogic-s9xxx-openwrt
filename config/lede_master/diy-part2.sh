@@ -64,6 +64,11 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argone/g' feeds/luci/collections/luci-
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 #
+# Linkease
+git clone --depth=1 --single-branch https://github.com/linkease/istore.git
+git clone --depth=1 --single-branch https://github.com/linkease/nas-packages.git
+git clone --depth=1 --single-branch https://github.com/linkease/nas-packages-luci.git
+#
 # dockerman
 git clone --depth=1 --single-branch https://github.com/sirpdboy/luci-app-dockerman.git
 #
