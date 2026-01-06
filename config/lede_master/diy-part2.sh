@@ -72,6 +72,12 @@ git clone --depth=1 --single-branch https://github.com/linkease/nas-packages-luc
 # dockerman
 git clone --depth=1 --single-branch https://github.com/sirpdboy/luci-app-dockerman.git
 #
+# adguardHome
+# git clone --depth=1 --single-branch https://github.com/sirpdboy/luci-app-adguardhome.git
+#
+# cpufreq
+git clone --depth=1 --single-branch https://github.com/hza81007155/luci-app-cpufreq.git
+#
 # 18.06 Argone theme
 git clone --depth=1 -b main https://github.com/hza81007155/luci-theme-argone package/luci-theme-argone
 git clone --depth=1 -b main https://github.com/hza81007155/luci-app-argone-config package/luci-app-argone-config
