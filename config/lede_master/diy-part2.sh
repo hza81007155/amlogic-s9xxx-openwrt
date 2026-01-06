@@ -55,6 +55,8 @@ git clone --depth=1 -b main https://github.com/xiaorouji/openwrt-passwall packag
 # Add luci-app-amlogic
 rm -rf package/luci-app-amlogic
 git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+# 应用过滤
+git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 
 # 设置默认主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argone/g' feeds/luci/collections/luci-light/Makefile
