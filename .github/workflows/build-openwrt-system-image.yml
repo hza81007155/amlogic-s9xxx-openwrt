@@ -21,7 +21,7 @@ on:
       openwrt_board:
         description: "Select device board"
         required: false
-        default: "all"
+        default: "wxy-oect"
         type: choice
         options:
           - all
@@ -255,10 +255,10 @@ on:
         options:
           - ophub
           - angel
-          - yourname
+          - hza800755
 
 env:
-  FEEDS_CONF: config/lede_master/feeds.conf
+  FEEDS_CONF: config/lede_master/feeds.conf.default
   CONFIG_FILE: config/${{ inputs.source_branch }}/config
   DIY_P1_SH: config/${{ inputs.source_branch }}/diy-part1.sh
   DIY_P2_SH: config/${{ inputs.source_branch }}/diy-part2.sh
