@@ -9,7 +9,7 @@
 # ------------------------------- Main source started -------------------------------
 #
 # Set default IP address
-default_ip="192.168.1.1"
+default_ip="192.168.10.12"
 ip_regex="^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
 # Modify default IP if an argument is provided and it matches the IP format
 [[ -n "${1}" && "${1}" != "${default_ip}" && "${1}" =~ ${ip_regex} ]] && {
@@ -18,7 +18,7 @@ ip_regex="^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01
 }
 
 # Modify default theme（FROM uci-theme-bootstrap CHANGE TO luci-theme-material）
-# sed -i 's/luci-theme-bootstrap/luci-theme-material/g' ./feeds/luci/collections/luci/Makefile
+#sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
 
 # Add autocore support for armsr-armv8
 sed -i 's/TARGET_rockchip/TARGET_rockchip\|\|TARGET_armsr/g' package/lean/autocore/Makefile
@@ -44,14 +44,54 @@ else
     echo 'CONFIG_CCACHE_DIR=""' >>.config
 fi
 #
-# ------------------------------- Main source ends -------------------------------
-
+# ------------------------------- Main source ends ----------------------------
+#
+# passwall
+rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview,shadow-tls}
+git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages
+rm -rf feeds/luci/applications/luci-app-passwall
+git clone https://github.com/Openwrt-Passwall/openwrt-passwall package/passwall-luci
 # ------------------------------- Other started -------------------------------
 #
 # Add luci-app-amlogic
 rm -rf package/luci-app-amlogic
 git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
 #
+#
+#luci-app-mosdns
+#git clone --depth=1 --single-branch https://github.com/sbwml/luci-app-mosdns.git
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+#
+# Linkease
+git clone --depth=1 --single-branch https://github.com/linkease/istore.git
+git clone --depth=1 --single-branch https://github.com/linkease/nas-packages.git
+git clone --depth=1 --single-branch https://github.com/linkease/nas-packages-luci.git
+#
+# dockerman
+git clone --depth=1 --single-branch https://github.com/sirpdboy/luci-app-dockerman.git
+#
+# adguardHome
+# git clone --depth=1 --single-branch https://github.com/sirpdboy/luci-app-adguardhome.git
+#
+# cpufreq
+git clone --depth=1 --single-branch https://github.com/hza81007155/luci-app-cpufreq.git
+#
+# 设置默认主题
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-light/Makefile
+#
+# 18.06 Argone theme
+git clone --depth=1 -b main https://github.com/hza81007155/luci-theme-argone package/luci-theme-argone
+git clone --depth=1 -b main https://github.com/hza81007155/luci-app-argone-config package/luci-app-argone-config
+
+## 23-24.0 Argon theme
+git clone --depth=1 -b master https://github.com/hza1128/luci-theme-argon
+git clone --depth=1 -b master https://github.com/hza1128/luci-app-argon-config
+#
+# 修改版本为编译日期
+date_version=$(date +"%y.%m.%d")
+orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
+sed -i "s/${orig_version}/R${date_version} by hza800755/g" package/lean/default-settings/files/zzz-default-settings
 # Apply patch
 # git apply ../config/patches/{0001*,0002*}.patch --directory=feeds/luci
 #
